@@ -1,0 +1,30 @@
+{
+  "name": "mabril-desktop",
+  "productName": "MABRIL",
+  "version": "0.1.0",
+  "private": true,
+  "main": "main.js",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "electron .",
+    "dist:mac": "electron-builder --mac dir"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.mabril.app",
+    "productName": "MABRIL",
+    "icon": "build/icon.icns",
+    "files": ["main.js"],
+    "mac": {
+      "icon": "build/icon.icns",
+      "category": "public.app-category.social-networking",
+      "target": [{ "target": "dir", "arch": ["x64", "arm64"] }]
+    },
+    "directories": {
+      "output": "dist"
+    }
+  }
+}
