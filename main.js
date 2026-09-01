@@ -3,10 +3,10 @@
 const { app, BrowserWindow, shell, Menu } = require('electron')
 const path = require('node:path')
 
-// La app de escritorio de MABRIL es una ventana nativa que carga la
-// red real ya publicada en producción (mabril.app) — no duplica
+// La app de escritorio de Burbuja es una ventana nativa que carga la
+// red real ya publicada en producción (burbuja.app) — no duplica
 // código, así que queda igual de actualizada que la web.
-const MABRIL_URL = 'https://mabril.app/'
+const MABRIL_URL = 'https://burbuja.app/'
 
 process.on('uncaughtException', (err) => {
   console.error('[MABRIL] error no manejado:', err)
@@ -56,7 +56,7 @@ function createWindow() {
     minWidth: 960,
     minHeight: 640,
     backgroundColor: '#04050d',
-    title: 'MABRIL',
+    title: 'Burbuja',
     icon: path.join(__dirname, 'build', 'icon.icns'),
     webPreferences: {
       contextIsolation: true,
