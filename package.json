@@ -23,12 +23,24 @@
   "build": {
     "appId": "com.mabril.app",
     "productName": "Burbuja",
+    "copyright": "Copyright © 2026 MABRIONA Corporation",
     "icon": "build/icon.icns",
     "files": ["main.js"],
     "mac": {
       "icon": "build/icon.icns",
       "category": "public.app-category.social-networking",
       "target": [{ "target": "dmg", "arch": ["x64", "arm64"] }]
+    },
+    "dmg": {
+      "title": "Burbuja",
+      "icon": "build/icon.icns",
+      "background": "build/dmg-background.png",
+      "window": { "width": 540, "height": 380 },
+      "iconSize": 80,
+      "contents": [
+        { "x": 140, "y": 210, "type": "file" },
+        { "x": 400, "y": 210, "type": "link", "path": "/Applications" }
+      ]
     },
     "linux": {
       "icon": "build/icons",
@@ -40,12 +52,21 @@
     },
     "win": {
       "icon": "build/icon.png",
+      "legalTrademarks": "MABRIONA Corporation",
       "target": [{ "target": "nsis", "arch": ["x64"] }]
     },
     "nsis": {
       "oneClick": false,
       "perMachine": false,
-      "allowToChangeInstallationDirectory": true
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "installerIcon": "build/installerHeaderIcon.ico",
+      "uninstallerIcon": "build/installerHeaderIcon.ico",
+      "installerHeaderIcon": "build/installerHeaderIcon.ico",
+      "installerSidebar": "build/installerSidebar.bmp",
+      "uninstallerSidebar": "build/uninstallerSidebar.bmp",
+      "artifactName": "${productName}-${version}-Setup.${ext}"
     },
     "directories": {
       "output": "dist"
