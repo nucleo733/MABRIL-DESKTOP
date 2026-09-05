@@ -25,35 +25,75 @@
     "productName": "Burbuja",
     "copyright": "Copyright © 2026 MABRIONA Corporation",
     "icon": "build/icon.icns",
-    "files": ["main.js"],
+    "files": [
+      "main.js",
+      "mabriona-update/**/*"
+    ],
     "mac": {
       "icon": "build/icon.icns",
       "category": "public.app-category.social-networking",
-      "target": [{ "target": "dmg", "arch": ["x64", "arm64"] }]
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ]
     },
     "dmg": {
       "title": "Burbuja",
       "icon": "build/icon.icns",
       "background": "build/dmg-background.png",
-      "window": { "width": 540, "height": 380 },
+      "window": {
+        "width": 540,
+        "height": 380
+      },
       "iconSize": 80,
       "contents": [
-        { "x": 140, "y": 210, "type": "file" },
-        { "x": 400, "y": 210, "type": "link", "path": "/Applications" }
+        {
+          "x": 140,
+          "y": 210,
+          "type": "file"
+        },
+        {
+          "x": 400,
+          "y": 210,
+          "type": "link",
+          "path": "/Applications"
+        }
       ]
     },
     "linux": {
       "icon": "build/icons",
       "category": "Network",
       "target": [
-        { "target": "AppImage", "arch": ["x64"] },
-        { "target": "deb", "arch": ["x64"] }
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        }
       ]
     },
     "win": {
       "icon": "build/icon.png",
       "legalTrademarks": "MABRIONA Corporation",
-      "target": [{ "target": "nsis", "arch": ["x64"] }]
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
     },
     "nsis": {
       "oneClick": false,
@@ -70,6 +110,14 @@
     },
     "directories": {
       "output": "dist"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "nucleo733",
+      "repo": "BURBUJA-DESKTOP"
     }
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.9"
   }
 }

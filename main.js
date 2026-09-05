@@ -12,6 +12,29 @@ process.on('uncaughtException', (err) => {
   console.error('[MABRIL] error no manejado:', err)
 })
 
+// MABRIONA UPDATE SYSTEM — cliente central de actualizaciones.
+//
+// Antes esto era un updater propio con electron-updater, que nunca llegó a
+// funcionar: consultaba GitHub Releases buscando el manifiesto `latest.yml`, y
+// ese archivo no se publicaba nunca porque las releases se subían a mano. La
+// app preguntaba, no encontraba nada y se quedaba callada para siempre.
+//
+// Ahora Burbuja consulta el mismo sistema central que MABRIONA Browser y
+// MATOKO DJ, con el mismo manifiesto y las mismas reglas de verificación. La
+// lógica vive en `mabriona-update/`, copia del repositorio
+// MABRIONA-UPDATE-SYSTEM que NO se edita acá (ver mabriona-update/ORIGEN.txt);
+// esta app solo aporta su identidad.
+const { integrarActualizaciones } = require('./mabriona-update/electron')
+
+function revisarActualizacion() {
+  integrarActualizaciones({
+    producto: 'burbuja',
+    nombreProducto: 'Burbuja',
+    version: app.getVersion(),
+    canal: 'stable',
+  }).revisar()
+}
+
 let mainWindow = null
 
 function buildMenu(win) {
@@ -85,7 +108,10 @@ function createWindow() {
   })
 }
 
-app.whenReady().then(createWindow)
+app.whenReady().then(() => {
+  createWindow()
+  revisarActualizacion()
+})
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
